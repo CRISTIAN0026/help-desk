@@ -13,8 +13,8 @@ const client = new ApolloClient({
 });
 
 
-const domain = "dev-8ttk0bift23xuep1.us.auth0.com"
-const clientId = "Mbhl5rP5MBPJEiytSTwOzyL8w7LLDRYW"
+const domain = process.env.APP_AUTH0_DOMAIN
+const clientId = process.env.AUTH0_CLIENT_ID
 
 console.log(domain, clientId)
 
