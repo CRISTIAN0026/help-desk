@@ -1,0 +1,51 @@
+type User {
+  _id: ID!
+  name: String!
+  email: String!
+  role: String!
+}
+
+type Request {
+  _id: ID!
+  date: String!
+  state: String!
+  queryType: String!
+  description: String!
+  userId: String!
+  createdBy: User!
+}
+
+type Message {
+  _id: ID!
+  text: String!
+  sender: User!
+  date: String!
+}
+
+type Conversation {
+  _id: ID!
+  messages: [Message]!
+  request: Request!
+  requestId: String
+  admin: User
+}
+
+type Query {
+  getUser(email: String!): User
+  getConversations: [Conversation]
+  getRequests: [Request]
+  getRequestsUser(createdBy: String!): [Request]
+  getConversationsByRequestId(requestId: String!): [Conversation]
+}
+
+type Mutation {
+  register(name: String!, email: String!, role: String!): User!
+  createRequest(date: String!, state: String!, queryType: String!, description: String!, userId: String): Request!
+  sendMessage(conversationId: String!, message: String!, requestId: String!, userId: String!): Message
+  respondToRequest(requestId: ID!, adminId: ID!, response: String!): String
+  updateRequestState(requestId: ID!, adminId: ID!, newState: String!): Request
+}
+
+type Subscription {
+  sendMessage(conversationId: ID!): Message
+}
