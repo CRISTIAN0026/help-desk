@@ -8,7 +8,7 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { Auth0Provider } from '@auth0/auth0-react';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql', 
+  uri: process.env.PORT_BACKEND || 'http://localhost:4000/graphql', 
   cache: new InMemoryCache(),
 });
 
@@ -24,7 +24,7 @@ root.render(
     <Auth0Provider 
     domain={domain} 
     clientId={clientId} 
-    authorizationParams={{ redirect_uri: window.location.origin }}>
+    authorizationParams={{ redirect_uri: process.env.PORT_FRONTEND || window.location.origin }}>
     <App />
     </Auth0Provider>
   </ApolloProvider>
