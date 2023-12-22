@@ -13,8 +13,8 @@ const client = new ApolloClient({
 });
 
 
-const domain = process.env.APP_AUTH0_DOMAIN
-const clientId = process.env.AUTH0_CLIENT_ID
+const domain = "dev-8ttk0bift23xuep1.us.auth0.com"
+const clientId = "Mbhl5rP5MBPJEiytSTwOzyL8w7LLDRYW"
 
 console.log(domain, clientId)
 
@@ -24,7 +24,7 @@ root.render(
     <Auth0Provider 
     domain={domain} 
     clientId={clientId} 
-    authorizationParams={{ redirect_uri: process.env.PORT_FRONTEND || window.location.origin }}>
+    authorizationParams={{ redirect_uri: window.location.origin }}>
     <App />
     </Auth0Provider>
   </ApolloProvider>
